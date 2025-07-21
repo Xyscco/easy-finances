@@ -1,0 +1,48 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-content">
+      <!-- Brand Section -->
+      <div class="brand-section" [class.register-mode]="!isLoginMode">
+        <div class="brand-content">
+          <div class="brand-logo">💰</div>
+          <h1 class="brand-title">Financial Manager</h1>
+          <p class="brand-subtitle">
+            Gerencie suas finanças de forma inteligente e tome o controle total do seu dinheiro.
+          </p>
+          
+          <div class="features-list" *ngIf="!isLoginMode">
+            <div class="feature-item">
+              <i nz-icon nzType="check-circle" nzTheme="fill"></i>
+              <span>Controle total de gastos</span>
+            </div>
+            <div class="feature-item">
+              <i nz-icon nzType="check-circle" nzTheme="fill"></i>
+              <span>Relatórios detalhados</span>
+            </div>
+            <div class="feature-item">
+              <i nz-icon nzType="check-circle" nzTheme="fill"></i>
+              <span>Metas financeiras</span>
+            </div>
+            <div class="feature-item">
+              <i nz-icon nzType="check-circle" nzTheme="fill"></i>
+              <span>100% seguro e privado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <app-login 
+          *ngIf="isLoginMode" 
+          (switchToRegister)="switchToRegister()"
+        ></app-login>
+        
+        <app-register 
+          *ngIf="!isLoginMode" 
+          (switchToLogin)="switchToLogin()"
+        ></app-register>
+      </div>
+    </div>
+  </div>
+</div>

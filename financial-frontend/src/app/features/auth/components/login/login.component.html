@@ -1,0 +1,108 @@
+<div class="form-container slide-in-up">
+  <div class="form-header">
+    <h2 class="form-title">Bem-vindo de volta!</h2>
+    <p class="form-subtitle">Entre na sua conta para continuar</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <!-- Email Field -->
+    <div class="form-group">
+      <label class="form-label" for="email">
+        <i nz-icon nzType="mail" nzTheme="outline"></i>
+        Email
+      </label>
+      <nz-input-group nzPrefixIcon="mail">
+        <input
+          nz-input
+          id="email"
+          type="email"
+          placeholder="Digite seu email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="getFieldError('email')"
+        />
+      </nz-input-group>
+      <span class="error-message" *ngIf="getFieldError('email')">
+        {{ getFieldError('email') }}
+      </span>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label class="form-label" for="senha">
+        <i nz-icon nzType="lock" nzTheme="outline"></i>
+        Senha
+      </label>
+      <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+        <input
+          nz-input
+          id="senha"
+          [type]="passwordVisible ? 'text' : 'password'"
+          placeholder="Digite sua senha"
+          formControlName="senha"
+          class="form-input"
+          [class.error]="getFieldError('senha')"
+        />
+      </nz-input-group>
+      <ng-template #suffixTemplate>
+        <i
+          nz-icon
+          [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+          (click)="passwordVisible = !passwordVisible"
+          class="password-toggle"
+        ></i>
+      </ng-template>
+      <span class="error-message" *ngIf="getFieldError('senha')">
+        {{ getFieldError('senha') }}
+      </span>
+    </div>
+
+    <!-- Remember Me & Forgot Password -->
+    <div class="form-options">
+      <label nz-checkbox formControlName="lembrar" class="remember-me">
+        Lembrar de mim
+      </label>
+      <a href="#" class="forgot-password">Esqueceu a senha?</a>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      [nzLoading]="loading"
+      [disabled]="loading"
+      class="btn-primary"
+      type="submit"
+    >
+      <span *ngIf="!loading">
+        <i nz-icon nzType="login" nzTheme="outline"></i>
+        Entrar
+      </span>
+      <span *ngIf="loading">Entrando...</span>
+    </button>
+
+    <!-- Social Login -->
+    <div class="social-login">
+      <nz-divider nzText="ou continue com"></nz-divider>
+      <div class="social-buttons">
+        <button nz-button nzType="default" class="social-btn google-btn">
+          <i nz-icon nzType="google" nzTheme="outline"></i>
+          Google
+        </button>
+        <button nz-button nzType="default" class="social-btn facebook-btn">
+          <i nz-icon nzType="facebook" nzTheme="fill"></i>
+          Facebook
+        </button>
+      </div>
+    </div>
+
+    <!-- Switch to Register -->
+    <div class="switch-form">
+      <span>Não tem uma conta? </span>
+      <a (click)="onSwitchToRegister()" class="switch-link">
+        Criar conta
+      </a>
+    </div>
+  </form>
+</div>
