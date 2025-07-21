@@ -1,0 +1,22 @@
+site_name: Documentação Easy Finances
+# dev_addr: 192.168.10.107:4280
+site_author: Francisco Márcio DEV
+theme:
+  name: material
+
+plugins:
+  - search
+  - mermaid2
+
+markdown_extensions:
+  - pymdownx.superfences:
+        # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
